@@ -1,0 +1,107 @@
+# Configuration Template for Windows Update Manager
+# Copy this file to 'config.ps1' and customize as needed
+
+# =============================================================================
+# Email Notification Settings
+# =============================================================================
+
+$EmailEnabled = $false
+$SmtpServer = "smtp.company.com"
+$SmtpPort = 587
+$SmtpUseSsl = $true
+$SmtpUsername = "updates@company.com"
+$SmtpPassword = "YourPasswordHere"  # Consider using secure string
+$EmailFrom = "updates@company.com"
+$EmailTo = @("admin@company.com", "it-team@company.com")
+$EmailSubject = "Windows Update Report - {HOSTNAME}"
+
+# =============================================================================
+# Webhook/SIEM Integration
+# =============================================================================
+
+$WebhookEnabled = $false
+$WebhookUrl = "https://siem.company.com/webhook/windows-updates"
+$WebhookMethod = "POST"
+$WebhookHeaders = @{
+    "Content-Type" = "application/json"
+    "Authorization" = "Bearer YOUR_TOKEN_HERE"
+}
+
+# =============================================================================
+# Update Preferences
+# =============================================================================
+
+# Exclude specific KBs (comma-separated)
+$ExcludedKBs = @(
+    # Example: "KB5034441", "KB5034442"
+)
+
+# Include only specific categories
+$UpdateCategories = @(
+    "Critical Updates",
+    "Security Updates",
+    "Definition Updates"
+    # Optional: "Feature Packs", "Service Packs", "Tools", "Update Rollups", "Updates"
+)
+
+# =============================================================================
+# Logging Settings
+# =============================================================================
+
+$LogPath = "$env:TEMP\WindowsUpdateManager"
+$LogRetentionDays = 30  # Keep logs for 30 days
+$MaxLogSizeMB = 50      # Maximum log file size
+
+# =============================================================================
+# Reboot Settings
+# =============================================================================
+
+$AutoRebootDelay = 300  # Seconds to wait before reboot (5 minutes)
+$RebootTimeWindow = @{
+    Start = "02:00"     # 2:00 AM
+    End = "06:00"       # 6:00 AM
+}
+
+# =============================================================================
+# Advanced Settings
+# =============================================================================
+
+$MaxParallelDownloads = 3
+$DownloadTimeout = 3600  # 1 hour in seconds
+$InstallTimeout = 7200   # 2 hours in seconds
+
+# Retry settings
+$MaxRetries = 3
+$RetryDelaySeconds = 60
+
+# =============================================================================
+# Maintenance Windows (Optional)
+# =============================================================================
+
+$MaintenanceWindows = @(
+    @{
+        DayOfWeek = "Sunday"
+        StartTime = "02:00"
+        EndTime = "06:00"
+    },
+    @{
+        DayOfWeek = "Wednesday"
+        StartTime = "22:00"
+        EndTime = "23:59"
+    }
+)
+
+# =============================================================================
+# Example: Load Configuration
+# =============================================================================
+
+<#
+To use this configuration in your script:
+
+# Load configuration if it exists
+$configFile = Join-Path $PSScriptRoot "config.ps1"
+if (Test-Path $configFile) {
+    . $configFile
+    Write-Log "Configuration loaded from $configFile" "INFO"
+}
+#>

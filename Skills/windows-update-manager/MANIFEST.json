@@ -1,0 +1,53 @@
+{
+  "name": "windows-update-manager",
+  "version": "1.0.0",
+  "description": "Professional Windows Update automation tool with comprehensive logging and reporting",
+  "author": "Claude AI",
+  "license": "MIT",
+  "main_script": "Windows-Update-Manager.ps1",
+  "category": "system-administration",
+  "tags": [
+    "windows-update",
+    "automation",
+    "powershell",
+    "system-maintenance",
+    "patch-management",
+    "logging",
+    "reporting"
+  ],
+  "requirements": {
+    "os": ["Windows 10", "Windows 11", "Windows Server 2016+"],
+    "powershell_version": "5.1+",
+    "modules": ["PSWindowsUpdate"],
+    "privileges": "administrator"
+  },
+  "files": {
+    "SKILL.md": "Complete technical documentation",
+    "Windows-Update-Manager.ps1": "Main automation script (283 lines)",
+    "README.md": "Quick start guide",
+    "INSTALLATION.md": "Setup and security guide",
+    "config.ps1.template": "Configuration template",
+    "MANIFEST.json": "This file",
+    "LICENSE.txt": "MIT License"
+  },
+  "features": [
+    "Automated update checking",
+    "Automated update installation",
+    "Comprehensive logging with timestamps",
+    "Text and JSON report generation",
+    "Optional automatic reboot",
+    "Dry-run mode for testing",
+    "Error handling and recovery",
+    "Email/webhook notifications (configurable)",
+    "SIEM integration ready",
+    "Scheduled task support"
+  ],
+  "usage": {
+    "check": ".\\Windows-Update-Manager.ps1 -Action Check",
+    "install": ".\\Windows-Update-Manager.ps1 -Action Install -AutoReboot",
+    "report": ".\\Windows-Update-Manager.ps1 -Action Report"
+  },
+  "created": "2025-01-20",
+  "total_size_kb": 58,
+  "file_count": 8
+}
